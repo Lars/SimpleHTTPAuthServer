@@ -96,7 +96,7 @@ def main():
     SimpleHTTPAuthHandler.KEY = base64.b64encode(args.key)
 
     serve_https(int(args.port), https=args.https,
-                start_dir=args.dir, handler_class=SimpleHTTPAuthHandler, args.ip)
+                start_dir=args.dir, handler_class=SimpleHTTPAuthHandler, ip=args.ip)
 
 
 if __name__ == '__main__':
