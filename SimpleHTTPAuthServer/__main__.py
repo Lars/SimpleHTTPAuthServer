@@ -81,7 +81,7 @@ def main():
     parser.add_argument('port', type=int, help='port number')
     parser.add_argument('key', help='username:password')
     parser.add_argument('--dir', required=False, help='directory')
-    parser.add_argument('--dir', required=False, help='ip', default="0.0.0.0")
+    parser.add_argument('--ip', required=False, help='ip', default="0.0.0.0")
     parser.add_argument('--https', help='Use https', action='store_true', default=False)
     args = parser.parse_args()
 
