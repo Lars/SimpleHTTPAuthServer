@@ -60,9 +60,9 @@ class SimpleHTTPAuthHandler(SimpleHTTPRequestHandler):
                     self.headers.get('Authorization').encode('utf-8'))
             self.wfile.write(b' not authenticated')
 
-def serve_https(https_port=80, https=True, start_dir=None, handler_class=SimpleHTTPAuthHandler):
+def serve_https(https_port=80, https=True, start_dir=None, handler_class=SimpleHTTPAuthHandler, ip = ""):
     ''' setting up server '''
-    httpd = TCPServer(("", https_port), handler_class)
+    httpd = TCPServer((ip, https_port), handler_class)
 
     if https:
         httpd.socket = ssl.wrap_socket(httpd.socket, keyfile=KEY_FILE,
@@ -82,6 +82,7 @@ def main():
     parser.add_argument('port', type=int, help='port number')
     parser.add_argument('key', help='username:password')
     parser.add_argument('--dir', required=False, help='directory')
+    parser.add_argument('--ip', required=False, help='ip', default="0.0.0.0")
     parser.add_argument('--https', help='Use https', action='store_true', default=False)
     args = parser.parse_args()
 
@@ -96,7 +97,7 @@ def main():
     SimpleHTTPAuthHandler.KEY = base64.b64encode(args.key.encode('utf-8'))
 
     serve_https(int(args.port), https=args.https,
-                start_dir=args.dir, handler_class=SimpleHTTPAuthHandler)
+                start_dir=args.dir, handler_class=SimpleHTTPAuthHandler, ip=args.ip)
 
 
 if __name__ == '__main__':
