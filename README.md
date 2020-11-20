@@ -10,7 +10,7 @@ Python SSL server using Basic auth and SimpleHTTP. extended and imported from gi
 
 ### Installation
 ```bash
-pip install git+git://github.com/toranova/SimpleHTTPAuthServer.git@master
+pip install git+git://github.com/Lars/SimpleHTTPAuthServer.git@master
 ```
 
 ### Usage
